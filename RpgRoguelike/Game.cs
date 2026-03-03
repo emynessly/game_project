@@ -2,23 +2,7 @@ namespace RpgRoguelike;
 
 public class Game
 {
-    public int MapWidth{ get; private set; } = 100;
-    public int MapHeight { get; private set; } = 100;
-
-    public static Game Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new Game();
-                instance.Init();
-            }
-            return instance;
-        }
-    }
-
-    private void Init()
+    public void Init()
     {
         gameStopped = false;
         Console.Clear();
@@ -58,5 +42,4 @@ public class Game
     }
 
     private bool gameStopped = false;
-    private static Game? instance;
 }

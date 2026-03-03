@@ -1,3 +1,5 @@
 ﻿using RpgRoguelike;
 
-Game.Instance.Run();
+var game = new Game();
+game.Init();
+game.Run();
