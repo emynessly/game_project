@@ -4,6 +4,7 @@ public class Game
 {
     public int MapWidth{ get; private set; } = 100;
     public int MapHeight { get; private set; } = 100;
+    public string Difficulty { get; private set; } = "Normal";
 
     public static Game Instance
     {
@@ -26,6 +27,9 @@ public class Game
     }
     public void Run()
     {
+        Console.Clear();
+        Console.WriteLine($"Game Started with difficulty: {Difficulty}");
+
         while (!GameIsEnded())
         {
             HandleInput();
@@ -54,7 +58,8 @@ public class Game
     private void Render()
     {
         Console.Clear();
-        Console.WriteLine("Game is running... Press Escape to end game.");
+        Console.WriteLine($"Game is running (Difficulty: {Difficulty})... Press Escape to end game.");
+        Console.WriteLine($"Map size: {MapWidth} x {MapHeight}");
     }
 
     private bool gameStopped = false;
