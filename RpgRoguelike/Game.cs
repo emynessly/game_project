@@ -6,6 +6,13 @@ public class Game
     public int MapHeight { get; private set; } = 100;
     public string Difficulty { get; private set; } = "Normal";
 
+    private Game()
+    {
+        MapWidth = 100;
+        MapHeight = 100;
+        Difficulty = "Normal";
+    }
+
     public static Game Instance
     {
         get
