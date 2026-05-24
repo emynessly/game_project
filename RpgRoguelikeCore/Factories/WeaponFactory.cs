@@ -4,6 +4,6 @@ namespace RpgRoguelikeCore.Factories
 {
     public abstract class WeaponFactory
     {
-        public abstract Weapon CreateWeapon();
+        public abstract IWeapon CreateWeapon();
     }
 }

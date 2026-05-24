@@ -65,6 +65,24 @@ namespace RpgRoguelikeCore
             Console.WriteLine($"Клон после изменений: здоровье {clone.Health}, оружие {clone.Weapon.Name}");
             Console.WriteLine($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
             Console.WriteLine($"Сравнение оригинала и клона. Они разные: {!ReferenceEquals(original, clone)}");
+
+            // декораторы
+
+            Console.WriteLine("\n - Работа Decorator (цепочка декораторов) - ");
+            
+            IWeapon dagger = new Dagger();
+            Console.WriteLine($"База: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+            
+            dagger = new PoisonDecorator(dagger, 5);
+            Console.WriteLine($"+Яд: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+            
+            dagger = new FireDecorator(dagger, 4);
+            Console.WriteLine($"+Огонь: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+
+            dagger = new RustDecorator(dagger, 3);
+            Console.WriteLine($"+Ржавчина: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+            
+            Console.WriteLine($"\nИтоговый урон: {dagger.GetDamage()}");
             
             Console.WriteLine("\n Press ESC to quit");
             

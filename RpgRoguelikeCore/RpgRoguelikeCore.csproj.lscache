@@ -71,9 +71,16 @@ obj/Debug/net9.0/
  RpgRoguelikeCore.AssemblyInfo.cs
  RpgRoguelikeCore.GlobalUsings.g.cs
 Weapons/
+ BaseWeapon.cs
+ Dagger.cs
+ FireDecorator.cs
+ IWeapon.cs
+ PoisonDecorator.cs
+ RustDecorator.cs
  Staff.cs
  Sword.cs
  Weapon.cs
+ WeaponDecorator.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.NETCore.App.Ref/9.0.16/ref/net9.0/
