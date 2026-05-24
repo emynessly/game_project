@@ -2,17 +2,25 @@ using System;
 
 namespace RpgRoguelikeCore.Weapons
 {
-    public abstract class Weapon
+    public class Weapon
     {
         public string Name { get; set; }
         public int Damage { get; set; }
         
-        protected Weapon(string name, int damage)
+        public Weapon(string name, int damage)
         {
             Name = name;
             Damage = damage;
         }
         
-        public abstract void Use();
+        public virtual void Use()
+        {
+        Console.WriteLine($"Атака оружием {Name} наносит урон: {Damage}");
+        }
+
+         public Weapon Clone()
+        {
+            return new Weapon(Name, Damage);
+        }
     }
 }

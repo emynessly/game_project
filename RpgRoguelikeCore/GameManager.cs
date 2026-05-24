@@ -47,11 +47,24 @@ namespace RpgRoguelikeCore
             Console.WriteLine($"Game Started with difficulty: {Difficulty}");
 
             EnemyFactory factory = new GoblinFactory();
-
             Enemy enemy = factory.CreateEnemy();
 
             Console.WriteLine("\n - Враг создан через фабрику - ");
             enemy.Attack();
+
+            Console.WriteLine("\n - Работа Prototype - ");
+    
+            Enemy original = new Goblin();
+            Enemy clone = original.Clone();
+
+            Console.WriteLine($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
+
+            clone.Health = 500;
+            clone.Weapon.Name = "Топорик";
+
+            Console.WriteLine($"Клон после изменений: здоровье {clone.Health}, оружие {clone.Weapon.Name}");
+            Console.WriteLine($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
+            Console.WriteLine($"Сравнение оригинала и клона. Они разные: {!ReferenceEquals(original, clone)}");
             
             Console.WriteLine("\n Press ESC to quit");
             

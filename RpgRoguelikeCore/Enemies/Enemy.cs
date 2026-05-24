@@ -1,4 +1,5 @@
 using System;
+using RpgRoguelikeCore.Weapons;
 
 namespace RpgRoguelikeCore.Enemies
 {
@@ -6,17 +7,18 @@ namespace RpgRoguelikeCore.Enemies
     {
         public string Name { get; set; }
         public int Health { get; set; }
-        public int Damage { get; set; }
+        public Weapon Weapon { get; set; }
         
-        protected Enemy(string name, int health, int damage)
+        protected Enemy(string name, int health, Weapon weapon)
         {
             Name = name;
             Health = health;
-            Damage = damage;
+            Weapon = weapon;
         }
         
         public abstract void Attack();
-        
+        public abstract Enemy Clone();
+
         public void TakeDamage(int amount)
         {
             Health -= amount;
