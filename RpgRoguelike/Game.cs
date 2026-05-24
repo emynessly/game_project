@@ -13,41 +13,9 @@ public class Game
             if (instance == null)
             {
                 instance = new Game();
-                instance.Init();
             }
             return instance;
         }
-    }
-
-    private void Init()
-    {
-        gameStopped = false;
-        Console.Clear();
-        Console.WriteLine("Game is running... Press Escape to stop.");
-    }
-    public void Run()
-    {
-        Console.Clear();
-        Console.WriteLine($"Game Started with difficulty: {Difficulty}");
-
-        while (!GameIsEnded())
-        {
-            HandleInput();
-            Update();
-            Render();
-        }
-    }
-
-    private bool GameIsEnded()
-    {
-        return gameStopped;
-    }
-
-    private void HandleInput()
-    {
-        var key = Console.ReadKey(true);
-        if (key.Key == ConsoleKey.Escape)
-            gameStopped = true;
     }
 
     private void Update()
@@ -62,6 +30,5 @@ public class Game
         Console.WriteLine($"Map size: {MapWidth} x {MapHeight}");
     }
 
-    private bool gameStopped = false;
     private static Game? instance;
 }
