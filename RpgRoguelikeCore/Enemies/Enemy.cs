@@ -22,6 +22,7 @@ namespace RpgRoguelikeCore.Enemies
         public void TakeDamage(int amount)
         {
             Health -= amount;
+            if (Health < 0) Health = 0;
             Console.WriteLine($"{Name} получил {amount} урона. Осталось здоровья: {Health}");
         }
         

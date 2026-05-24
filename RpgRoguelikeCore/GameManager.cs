@@ -14,7 +14,7 @@ namespace RpgRoguelikeCore
 
     public class GameManager
     {
-        private static GameManager _instance;
+        private static GameManager? _instance;
         
         public static GameManager Instance
         {
