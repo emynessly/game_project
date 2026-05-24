@@ -54,11 +54,26 @@ TemporaryDependencyNodeTargetIdentifier=net9.0
 
 [sourceFiles]
 Class1.cs
+Enemies/
+ Enemy.cs
+ Goblin.cs
+ Skeleton.cs
+Factories/
+ EnemyFactory.cs
+ GoblinFactory.cs
+ SkeletonFactory.cs
+ StaffFactory.cs
+ SwordFactory.cs
+ WeaponFactory.cs
 GameManager.cs
 obj/Debug/net9.0/
  .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
  RpgRoguelikeCore.AssemblyInfo.cs
  RpgRoguelikeCore.GlobalUsings.g.cs
+Weapons/
+ Staff.cs
+ Sword.cs
+ Weapon.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.NETCore.App.Ref/9.0.16/ref/net9.0/

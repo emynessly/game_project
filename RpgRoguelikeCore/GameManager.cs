@@ -1,4 +1,7 @@
 using System;
+using RpgRoguelikeCore.Factories;
+using RpgRoguelikeCore.Weapons;
+using RpgRoguelikeCore.Enemies;
 
 namespace RpgRoguelikeCore
 {
@@ -42,6 +45,15 @@ namespace RpgRoguelikeCore
         public void Run()
         {
             Console.WriteLine($"Game Started with difficulty: {Difficulty}");
+
+            EnemyFactory factory = new GoblinFactory();
+
+            Enemy enemy = factory.CreateEnemy();
+
+            Console.WriteLine("\n - Враг создан через фабрику - ");
+            enemy.Attack();
+            
+            Console.WriteLine("\n Press ESC to quit");
             
             while (isRunning)
             {
