@@ -2,6 +2,7 @@ using System;
 using RpgRoguelikeCore.Factories;
 using RpgRoguelikeCore.Weapons;
 using RpgRoguelikeCore.Enemies;
+using RpgRoguelikeCore.Logging;
 
 namespace RpgRoguelikeCore
 {
@@ -15,6 +16,7 @@ namespace RpgRoguelikeCore
     public class GameManager
     {
         private static GameManager? _instance;
+        private ILogger _logger;
         
         public static GameManager Instance
         {
@@ -40,51 +42,54 @@ namespace RpgRoguelikeCore
             MapHeight = 100;
             Difficulty = Difficulty.Normal;
             isRunning = true;
+
+            var externalLogger = new ExternalLogger();
+            _logger = new LoggerAdapter(externalLogger);
         }
         
         public void Run()
         {
-            Console.WriteLine($"Game Started with difficulty: {Difficulty}");
+            _logger.Log($"Game Started with difficulty: {Difficulty}");
 
             EnemyFactory factory = new GoblinFactory();
             Enemy enemy = factory.CreateEnemy();
 
-            Console.WriteLine("\n - Враг создан через фабрику - ");
+            _logger.Log("\n - Враг создан через фабрику - ");
             enemy.Attack();
 
-            Console.WriteLine("\n - Работа Prototype - ");
+            _logger.Log("\n - Работа Prototype - ");
     
             Enemy original = new Goblin();
             Enemy clone = original.Clone();
 
-            Console.WriteLine($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
+            _logger.Log($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
 
             clone.Health = 500;
             clone.Weapon.Name = "Топорик";
 
-            Console.WriteLine($"Клон после изменений: здоровье {clone.Health}, оружие {clone.Weapon.Name}");
-            Console.WriteLine($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
-            Console.WriteLine($"Сравнение оригинала и клона. Они разные: {!ReferenceEquals(original, clone)}");
+            _logger.Log($"Клон после изменений: здоровье {clone.Health}, оружие {clone.Weapon.Name}");
+            _logger.Log($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
+            _logger.Log($"Сравнение оригинала и клона. Они разные: {!ReferenceEquals(original, clone)}");
 
             // декораторы
 
-            Console.WriteLine("\n - Работа Decorator (цепочка декораторов) - ");
+            _logger.Log("\n - Работа Decorator (цепочка декораторов) - ");
             
             IWeapon dagger = new Dagger();
-            Console.WriteLine($"База: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+            _logger.Log($"База: {dagger.GetName()} -> {dagger.GetDamage()} урона");
             
             dagger = new PoisonDecorator(dagger, 5);
-            Console.WriteLine($"+Яд: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+            _logger.Log($"+Яд: {dagger.GetName()} -> {dagger.GetDamage()} урона");
             
             dagger = new FireDecorator(dagger, 4);
-            Console.WriteLine($"+Огонь: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+            _logger.Log($"+Огонь: {dagger.GetName()} -> {dagger.GetDamage()} урона");
 
             dagger = new RustDecorator(dagger, 3);
-            Console.WriteLine($"+Ржавчина: {dagger.GetName()} -> {dagger.GetDamage()} урона");
+            _logger.Log($"+Ржавчина: {dagger.GetName()} -> {dagger.GetDamage()} урона");
             
-            Console.WriteLine($"\nИтоговый урон: {dagger.GetDamage()}");
+            _logger.Log($"\nИтоговый урон: {dagger.GetDamage()}");
             
-            Console.WriteLine("\n Press ESC to quit");
+            _logger.Log("\n Press ESC to quit");
             
             while (isRunning)
             {

@@ -66,6 +66,10 @@ Factories/
  SwordFactory.cs
  WeaponFactory.cs
 GameManager.cs
+Logging/
+ ExternalLogger.cs
+ ILogger.cs
+ LoggerAdapter.cs
 obj/Debug/net9.0/
  .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
  RpgRoguelikeCore.AssemblyInfo.cs
