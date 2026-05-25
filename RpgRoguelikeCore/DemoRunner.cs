@@ -3,6 +3,7 @@ using RpgRoguelikeCore.Factories;
 using RpgRoguelikeCore.Weapons;
 using RpgRoguelikeCore.Enemies;
 using RpgRoguelikeCore.Logging;
+using RpgRoguelikeCore.Strategies;
 
 namespace RpgRoguelikeCore
 {
@@ -24,6 +25,7 @@ namespace RpgRoguelikeCore
             DemoFactory();
             DemoPrototype();
             DemoDecorator();
+            DemoStrategyInGame();
         }
         
         private void DemoFactory()
@@ -69,6 +71,32 @@ namespace RpgRoguelikeCore
             _logger.Log($"+Ржавчина: {dagger.GetName()} -> {dagger.GetDamage()} урона");
             
             _logger.Log($"\nИтоговый урон: {dagger.GetDamage()}");
+        }
+
+        private void DemoStrategyInGame()
+        {
+        _logger.Log("\n - Работа и смена стратегий - ");
+        
+        Enemy enemy = new Goblin();
+
+        for (int i = 0; i < 3; i++)
+        {
+            _logger.Log($"\n--- ТИК {i + 1} ---");
+            
+            if (enemy.Health < 20)
+            {
+                _logger.Log("Здоровье врага низкое. Смена стратегии.");
+                enemy.AttackStrategy = new RangedAttackStrategy(50);
+            }
+            else
+            {
+                enemy.AttackStrategy = new MeleeAttackStrategy();
+            }
+
+            enemy.Attack();
+
+            enemy.TakeDamage(15);
+        }
         }
     }
 }

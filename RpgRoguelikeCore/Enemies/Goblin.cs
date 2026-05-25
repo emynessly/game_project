@@ -17,11 +17,6 @@ namespace RpgRoguelikeCore.Enemies
         {
         }
 
-        public override void Attack()
-        {
-            Weapon.Use();
-        }
-
         public override Enemy Clone()
         {
             return new Goblin(this);

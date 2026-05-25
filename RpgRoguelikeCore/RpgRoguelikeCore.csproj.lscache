@@ -77,6 +77,10 @@ obj/Debug/net9.0/
  .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
  RpgRoguelikeCore.AssemblyInfo.cs
  RpgRoguelikeCore.GlobalUsings.g.cs
+Strategies/
+ IAttackStrategy.cs
+ MeleeAttackStrategy.cs
+ RangedAttackStrategy.cs
 Weapons/
  BaseWeapon.cs
  Dagger.cs

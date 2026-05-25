@@ -1,10 +1,12 @@
 using System;
 using RpgRoguelikeCore.Weapons;
+using RpgRoguelikeCore.Strategies;
 
 namespace RpgRoguelikeCore.Enemies
 {
     public abstract class Enemy
     {
+        public IAttackStrategy AttackStrategy { get; set; }
         public string Name { get; set; }
         public int Health { get; set; }
         public Weapon Weapon { get; set; }
@@ -16,7 +18,17 @@ namespace RpgRoguelikeCore.Enemies
             Weapon = weapon;
         }
         
-        public abstract void Attack();
+        public void Attack()
+        {
+            if (AttackStrategy != null)
+            {
+                AttackStrategy.Execute(this);
+            }
+            else
+            {
+                Weapon.Use();
+            }
+        }
         public abstract Enemy Clone();
 
         public void TakeDamage(int amount)
