@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgRoguelike", "RpgRoguelik
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgRoguelikeCore", "RpgRoguelikeCore\RpgRoguelikeCore.csproj", "{67FC5692-A939-4782-975A-8DDFDDE8E710}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgRoguelike.Tests", "RpgRoguelike.Tests\RpgRoguelike.Tests.csproj", "{E1198B62-624A-4443-9A45-9FF071878FEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{67FC5692-A939-4782-975A-8DDFDDE8E710}.Release|x64.Build.0 = Release|Any CPU
 		{67FC5692-A939-4782-975A-8DDFDDE8E710}.Release|x86.ActiveCfg = Release|Any CPU
 		{67FC5692-A939-4782-975A-8DDFDDE8E710}.Release|x86.Build.0 = Release|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Debug|x64.Build.0 = Debug|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Debug|x86.Build.0 = Debug|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Release|x64.ActiveCfg = Release|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Release|x64.Build.0 = Release|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Release|x86.ActiveCfg = Release|Any CPU
+		{E1198B62-624A-4443-9A45-9FF071878FEB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

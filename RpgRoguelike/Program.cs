@@ -1,3 +1,3 @@
-﻿using RpgRoguelike;
+﻿using RpgRoguelikeCore;
 
-Game.Instance.Run();
+GameManager.Instance.Run();
