@@ -5,11 +5,15 @@ namespace RpgRoguelike.Tests
 {
         public class EnemyTests
     {
+        private const int TEST_DAMAGE = 15;
+        private const int OVERKILL_DAMAGE = 100;
+        private const int GOBLIN_HEALTH = 50;
+
         [Fact]
         public void TakingDamage_WithValidNumber_ReducesHealth()
         {
             var enemy = new Goblin();
-            enemy.TakeDamage(15);
+            enemy.TakeDamage(TEST_DAMAGE);
             Assert.Equal(35, enemy.Health);
         }
 
@@ -17,7 +21,7 @@ namespace RpgRoguelike.Tests
         public void TakingDamage_WithNumberMoreThanHealth_HealthGoesToZero()
         {
             var enemy = new Goblin();
-            enemy.TakeDamage(100);
+            enemy.TakeDamage(OVERKILL_DAMAGE);
             Assert.Equal(0, enemy.Health);
         }
 
@@ -25,7 +29,7 @@ namespace RpgRoguelike.Tests
         public void TakingDamage_WithNumberEqualToHealth_HealthBecomesZero()
         {
             var enemy = new Goblin();
-            enemy.TakeDamage(50);
+            enemy.TakeDamage(GOBLIN_HEALTH);
             Assert.Equal(0, enemy.Health);
         }
 

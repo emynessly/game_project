@@ -19,7 +19,7 @@ namespace RpgRoguelikeCore.Weapons
 
         public virtual void Use()
         {
-        Console.WriteLine($"Атака оружием {Name} наносит урон: {GetDamage}");
+        Console.WriteLine($"Атака оружием {Name} наносит урон: {GetDamage()}");
         }
 
          public Weapon Clone()

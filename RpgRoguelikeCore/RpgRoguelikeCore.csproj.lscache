@@ -54,6 +54,7 @@ TemporaryDependencyNodeTargetIdentifier=net9.0
 
 [sourceFiles]
 Class1.cs
+DemoRunner.cs
 Enemies/
  Enemy.cs
  Goblin.cs
@@ -65,7 +66,9 @@ Factories/
  StaffFactory.cs
  SwordFactory.cs
  WeaponFactory.cs
+GameLoop.cs
 GameManager.cs
+GameSettings.cs
 Logging/
  ExternalLogger.cs
  ILogger.cs

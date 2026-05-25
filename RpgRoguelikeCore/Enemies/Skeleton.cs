@@ -5,7 +5,10 @@ namespace RpgRoguelikeCore.Enemies
 {
     public class Skeleton : Enemy
     {
-        public Skeleton() : base("Скелет", health: 30, new Weapon("Костяной лук", 12))
+        private const int DEFAULT_HEALTH = 30;
+        private const string DEFAULT_WEAPON_NAME = "Костяной лук";
+        private const int DEFAULT_WEAPON_DAMAGE = 12;
+        public Skeleton() : base("Скелет", DEFAULT_HEALTH, new Weapon(DEFAULT_WEAPON_NAME, DEFAULT_WEAPON_DAMAGE))
         {
         }
         
