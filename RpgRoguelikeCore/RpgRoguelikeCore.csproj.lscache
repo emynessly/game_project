@@ -54,6 +54,9 @@ TemporaryDependencyNodeTargetIdentifier=net9.0
 
 [sourceFiles]
 Class1.cs
+Commands/
+ ICommand.cs
+ MoveCommand.cs
 DemoRunner.cs
 Enemies/
  Enemy.cs
@@ -70,6 +73,7 @@ Factories/
 GameLoop.cs
 GameManager.cs
 GameSettings.cs
+Input/InputHandler.cs
 Logging/
  ExternalLogger.cs
  ILogger.cs

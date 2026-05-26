@@ -43,5 +43,15 @@ namespace RpgRoguelikeCore.Entities
         }
 
         public bool IsAlive() => Health > 0;
+        
+        public int X { get; set; }
+        public int Y { get; set }
+
+        public void SetPosition(int x, int y)
+        {
+            X = x;
+            Y = y;
+            _logger.Log($"Игрок переместился на {X}, {Y}");
+        }
     }
 }

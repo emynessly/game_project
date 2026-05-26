@@ -2,6 +2,8 @@ using System;
 using RpgRoguelikeCore.Logging;
 using RpgRoguelikeCore.States;
 using RpgRoguelikeCore.Entities;
+using RpgRoguelikeCore.Commands;
+using RpgRoguelikeCore.Input;
 
 namespace RpgRoguelikeCore
 {
@@ -13,6 +15,9 @@ namespace RpgRoguelikeCore
         private Player _player;
         private DemoRunner _demoRunner;
         private GameSettings _settings;
+        private GameLoop _gameLoop;
+        private InputHandler _inputHandler;
+        private Stack<ICommand> _history;
 
         public IGameState MenuState { get; private set; }
         public IGameState GameState { get; private set; }
@@ -39,6 +44,13 @@ namespace RpgRoguelikeCore
             _settings = new GameSettings();
             _player = new Player(_logger);
             _demoRunner = new DemoRunner(_logger, _settings);
+            _history = new Stack<ICommand>();
+
+            _inputHandler = new InputHandler();
+            _inputHandler.BindKey(ConsoleKey.W, new MoveCommand(_player, 0, -1));
+            _inputHandler.BindKey(ConsoleKey.A, new MoveCommand(_player, -1, 0));
+            _inputHandler.BindKey(ConsoleKey.S, new MoveCommand(_player, 0, 1));
+            _inputHandler.BindKey(ConsoleKey.D, new MoveCommand(_player, 1, 0));
 
             MenuState = new MenuState(_logger, this);
             GameState = new GameState(_logger, this, _player, _demoRunner);
@@ -46,8 +58,27 @@ namespace RpgRoguelikeCore
             GameOverState = new GameOverState(_logger, this);
             
             _currentState = MenuState;
+            _gameLoop = new GameLoop(_logger, this);
         }
         
+        public void ExecuteCommand(ICommand command)
+        {
+            command.Execute();
+            _history.Push(command);
+
+        }
+
+        public void Undo()
+        {
+            if (_history.Count > 0)
+            {
+                ICommand command = _history.Pop();
+                command.Undo();
+            }
+        }
+
+        public InputHandler GetInputHandler() => _inputHandler;
+
         public void SetState(IGameState newState)
         {
             _currentState.Exit();
@@ -63,13 +94,7 @@ namespace RpgRoguelikeCore
         
         public void Run()
         {
-            _currentState.Enter();
-            
-            while (true)
-            {
-                _currentState.Update();
-                System.Threading.Thread.Sleep(50);
-            }
+            _gameLoop.Run();
         }
     }
 }
