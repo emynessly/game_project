@@ -4,6 +4,8 @@ using RpgRoguelikeCore.Weapons;
 using RpgRoguelikeCore.Enemies;
 using RpgRoguelikeCore.Logging;
 using RpgRoguelikeCore.Strategies;
+using RpgRoguelikeCore.Entities;
+using RpgRoguelikeCore.UI;
 
 namespace RpgRoguelikeCore
 {
@@ -26,6 +28,7 @@ namespace RpgRoguelikeCore
             DemoPrototype();
             DemoDecorator();
             DemoStrategyInGame();
+            DemoObserver();
         }
         
         private void DemoFactory()
@@ -75,28 +78,47 @@ namespace RpgRoguelikeCore
 
         private void DemoStrategyInGame()
         {
-        _logger.Log("\n - Работа и смена стратегий - ");
-        
-        Enemy enemy = new Goblin();
-
-        for (int i = 0; i < 3; i++)
-        {
-            _logger.Log($"\n--- ТИК {i + 1} ---");
+            _logger.Log("\n - Работа и смена стратегий - ");
             
-            if (enemy.Health < 20)
-            {
-                _logger.Log("Здоровье врага низкое. Смена стратегии.");
-                enemy.AttackStrategy = new RangedAttackStrategy(50);
-            }
-            else
-            {
-                enemy.AttackStrategy = new MeleeAttackStrategy();
-            }
+            Enemy enemy = new Goblin();
 
-            enemy.Attack();
+            for (int i = 0; i < 3; i++)
+            {
+                _logger.Log($"\n--- ТИК {i + 1} ---");
+                
+                if (enemy.Health < 20)
+                {
+                    _logger.Log("Здоровье врага низкое. Смена стратегии.");
+                    enemy.AttackStrategy = new RangedAttackStrategy(50);
+                }
+                else
+                {
+                    enemy.AttackStrategy = new MeleeAttackStrategy();
+                }
 
-            enemy.TakeDamage(15);
+                enemy.Attack();
+
+                enemy.TakeDamage(15);
+            }
         }
+
+        private void DemoObserver()
+        {
+            _logger.Log("\n - Рабта Observer - ");
+
+            Player player = new Player(_logger);
+            ConsoleHUD hud = new ConsoleHUD(_logger);
+            hud.Subscribe(player);
+
+            _logger.Log("\n Нанесение урона");
+            player.TakeDamage(20);
+            player.TakeDamage(45);
+
+            _logger.Log("\n Лечение");
+            player.Heal(35);
+
+            _logger.Log("\n Повторное нанесение урона");
+            player.TakeDamage(70);
         }
     }
 }

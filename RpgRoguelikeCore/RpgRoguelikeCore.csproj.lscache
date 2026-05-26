@@ -59,6 +59,7 @@ Enemies/
  Enemy.cs
  Goblin.cs
  Skeleton.cs
+Entities/Player.cs
 Factories/
  EnemyFactory.cs
  GoblinFactory.cs
@@ -81,6 +82,7 @@ Strategies/
  IAttackStrategy.cs
  MeleeAttackStrategy.cs
  RangedAttackStrategy.cs
+UI/ConsoleHUD.cs
 Weapons/
  BaseWeapon.cs
  Dagger.cs
