@@ -19,6 +19,7 @@ namespace RpgRoguelikeCore.Commands
 
         public void Execute()
         {
+            Console.WriteLine($"DEBUG: MoveCommand.Execute() перед перемещением. X={_player.X}, Y={_player.Y}");
             _previousX = _player.X;
             _previousY = _player.Y;
             _player.X += _deltaX;

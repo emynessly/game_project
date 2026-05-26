@@ -51,7 +51,6 @@ namespace RpgRoguelikeCore.Entities
         {
             X = x;
             Y = y;
-            _logger.Log($"Игрок переместился на {X}, {Y}");
         }
     }
 }

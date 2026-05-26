@@ -96,5 +96,7 @@ namespace RpgRoguelikeCore
         {
             _gameLoop.Run();
         }
+
+        public Player GetPlayer() => _player;
     }
 }

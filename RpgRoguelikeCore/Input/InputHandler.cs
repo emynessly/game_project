@@ -18,6 +18,7 @@ namespace RpgRoguelikeCore.Input
             if (Console.KeyAvailable)
             {
                 var key = Console.ReadKey(true);
+                Console.WriteLine($"DEBUG: Нажата клавиша {key.Key}");
                 if (_commands.ContainsKey(key.Key))
                 {
                     return _commands[key.Key];

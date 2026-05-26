@@ -35,7 +35,7 @@ namespace RpgRoguelikeCore
                         continue;
                     }
                 }
-
+            
                 var command = inputHandler.GetCommand();
                 if (command != null)
                 {
