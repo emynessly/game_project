@@ -1,4 +1,4 @@
-﻿using RpgRoguelikeCore.Enemies;
+using RpgRoguelikeCore.Enemies;
 using Xunit;
 
 namespace RpgRoguelike.Tests

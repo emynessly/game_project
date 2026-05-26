@@ -78,6 +78,12 @@ obj/Debug/net9.0/
  .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
  RpgRoguelikeCore.AssemblyInfo.cs
  RpgRoguelikeCore.GlobalUsings.g.cs
+States/
+ GameOverState.cs
+ GameState.cs
+ IGameState.cs
+ MenuState.cs
+ PauseState.cs
 Strategies/
  IAttackStrategy.cs
  MeleeAttackStrategy.cs

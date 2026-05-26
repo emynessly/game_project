@@ -62,6 +62,7 @@ obj/Debug/net9.0/
  RpgRoguelike.Tests.AssemblyInfo.cs
  RpgRoguelike.Tests.GlobalUsings.g.cs
 ObserverTests.cs
+StateTests.cs
 
 [metadataReferences]
 ../RpgRoguelikeCore/obj/Debug/net9.0/ref/RpgRoguelikeCore.dll

@@ -1,4 +1,7 @@
+using System;
 using RpgRoguelikeCore.Logging;
+using RpgRoguelikeCore.States;
+using RpgRoguelikeCore.Entities;
 
 namespace RpgRoguelikeCore
 {
@@ -6,9 +9,15 @@ namespace RpgRoguelikeCore
     {
         private static GameManager? _instance;
         private ILogger _logger;
-        private GameSettings _settings;
+        private IGameState _currentState;
+        private Player _player;
         private DemoRunner _demoRunner;
-        private GameLoop _gameLoop;
+        private GameSettings _settings;
+
+        public IGameState MenuState { get; private set; }
+        public IGameState GameState { get; private set; }
+        public IGameState PauseState { get; private set; }
+        public IGameState GameOverState { get; private set; }
         
         public static GameManager Instance
         {
@@ -28,14 +37,39 @@ namespace RpgRoguelikeCore
             _logger = new LoggerAdapter(externalLogger);
             
             _settings = new GameSettings();
+            _player = new Player(_logger);
             _demoRunner = new DemoRunner(_logger, _settings);
-            _gameLoop = new GameLoop(_logger);
+
+            MenuState = new MenuState(_logger, this);
+            GameState = new GameState(_logger, this, _player, _demoRunner);
+            PauseState = new PauseState(_logger, this);
+            GameOverState = new GameOverState(_logger, this);
+            
+            _currentState = MenuState;
+        }
+        
+        public void SetState(IGameState newState)
+        {
+            _currentState.Exit();
+            _currentState = newState;
+            _currentState.Enter();
+        }
+        
+        public void RestartGame()
+        {
+            _player = new Player(_logger);
+            SetState(MenuState);
         }
         
         public void Run()
         {
-            _demoRunner.RunAllDemos();
-            _gameLoop.Run();
+            _currentState.Enter();
+            
+            while (true)
+            {
+                _currentState.Update();
+                System.Threading.Thread.Sleep(50);
+            }
         }
     }
 }
