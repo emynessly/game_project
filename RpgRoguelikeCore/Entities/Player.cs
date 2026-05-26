@@ -14,7 +14,7 @@ namespace RpgRoguelikeCore.Entities
         public int Health { get; private set; }
         public int MaxHealth { get; private set; }
 
-        public event Action<Player> OnHealthChanged;
+        public event Action<Player>? OnHealthChanged;
 
         public Player(ILogger logger, string name = DEFAULT_NAME, int maxHealth = DEFAULT_MAX_HEALTH)
         {

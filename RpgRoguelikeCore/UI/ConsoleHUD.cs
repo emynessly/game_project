@@ -18,6 +18,12 @@ namespace RpgRoguelikeCore.UI
             player.OnHealthChanged += UpdateHealthDisplay;
         }
 
+        public void Unsubscribe(Player player)
+        {
+            player.OnHealthChanged -= UpdateHealthDisplay;
+        }
+
+
         private void UpdateHealthDisplay(Player player)
         {
             int percent = (player.Health * 100) / player.MaxHealth;

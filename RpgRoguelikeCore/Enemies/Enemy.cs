@@ -6,7 +6,7 @@ namespace RpgRoguelikeCore.Enemies
 {
     public abstract class Enemy
     {
-        public IAttackStrategy AttackStrategy { get; set; }
+        public IAttackStrategy? AttackStrategy { get; set; }
         public string Name { get; set; }
         public int Health { get; set; }
         public Weapon Weapon { get; set; }

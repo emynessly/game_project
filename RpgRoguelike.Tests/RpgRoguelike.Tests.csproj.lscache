@@ -61,6 +61,7 @@ obj/Debug/net9.0/
  .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
  RpgRoguelike.Tests.AssemblyInfo.cs
  RpgRoguelike.Tests.GlobalUsings.g.cs
+ObserverTests.cs
 
 [metadataReferences]
 ../RpgRoguelikeCore/obj/Debug/net9.0/ref/RpgRoguelikeCore.dll
