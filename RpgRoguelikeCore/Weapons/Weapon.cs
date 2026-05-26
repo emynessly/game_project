@@ -2,7 +2,7 @@ using System;
 
 namespace RpgRoguelikeCore.Weapons
 {
-    public class Weapon
+    public class Weapon : IWeapon
     {
         public string Name { get; set; }
         public int Damage { get; set; }
@@ -13,9 +13,13 @@ namespace RpgRoguelikeCore.Weapons
             Damage = damage;
         }
         
+        public virtual int GetDamage() => Damage;
+
+        public virtual string GetName() => Name;
+
         public virtual void Use()
         {
-        Console.WriteLine($"Атака оружием {Name} наносит урон: {Damage}");
+        Console.WriteLine($"Атака оружием {Name} наносит урон: {GetDamage()}");
         }
 
          public Weapon Clone()

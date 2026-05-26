@@ -54,10 +54,15 @@ TemporaryDependencyNodeTargetIdentifier=net9.0
 
 [sourceFiles]
 Class1.cs
+Commands/
+ ICommand.cs
+ MoveCommand.cs
+DemoRunner.cs
 Enemies/
  Enemy.cs
  Goblin.cs
  Skeleton.cs
+Entities/Player.cs
 Factories/
  EnemyFactory.cs
  GoblinFactory.cs
@@ -65,15 +70,40 @@ Factories/
  StaffFactory.cs
  SwordFactory.cs
  WeaponFactory.cs
+GameLoop.cs
 GameManager.cs
+GameSettings.cs
+Input/InputHandler.cs
+Logging/
+ ExternalLogger.cs
+ ILogger.cs
+ LoggerAdapter.cs
 obj/Debug/net9.0/
  .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
  RpgRoguelikeCore.AssemblyInfo.cs
  RpgRoguelikeCore.GlobalUsings.g.cs
+States/
+ GameOverState.cs
+ GameState.cs
+ IGameState.cs
+ MenuState.cs
+ PauseState.cs
+Strategies/
+ IAttackStrategy.cs
+ MeleeAttackStrategy.cs
+ RangedAttackStrategy.cs
+UI/ConsoleHUD.cs
 Weapons/
+ BaseWeapon.cs
+ Dagger.cs
+ FireDecorator.cs
+ IWeapon.cs
+ PoisonDecorator.cs
+ RustDecorator.cs
  Staff.cs
  Sword.cs
  Weapon.cs
+ WeaponDecorator.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.NETCore.App.Ref/9.0.16/ref/net9.0/

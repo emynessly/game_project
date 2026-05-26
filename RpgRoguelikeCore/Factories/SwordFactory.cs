@@ -4,7 +4,7 @@ namespace RpgRoguelikeCore.Factories
 {
     public class SwordFactory : WeaponFactory
     {
-        public override Weapon CreateWeapon()
+        public override IWeapon CreateWeapon()
         {
             return new Sword();
         }

@@ -1,20 +1,28 @@
 using System;
-using RpgRoguelikeCore.Factories;
-using RpgRoguelikeCore.Weapons;
-using RpgRoguelikeCore.Enemies;
+using RpgRoguelikeCore.Logging;
+using RpgRoguelikeCore.States;
+using RpgRoguelikeCore.Entities;
+using RpgRoguelikeCore.Commands;
+using RpgRoguelikeCore.Input;
 
 namespace RpgRoguelikeCore
 {
-    public enum Difficulty
-    {
-        Easy,
-        Normal,
-        Hard
-    }
-
     public class GameManager
     {
         private static GameManager? _instance;
+        private ILogger _logger;
+        private IGameState _currentState;
+        private Player _player;
+        private DemoRunner _demoRunner;
+        private GameSettings _settings;
+        private GameLoop _gameLoop;
+        private InputHandler _inputHandler;
+        private Stack<ICommand> _history;
+
+        public IGameState MenuState { get; private set; }
+        public IGameState GameState { get; private set; }
+        public IGameState PauseState { get; private set; }
+        public IGameState GameOverState { get; private set; }
         
         public static GameManager Instance
         {
@@ -27,58 +35,66 @@ namespace RpgRoguelikeCore
                 return _instance;
             }
         }
-
-        public int MapWidth { get; set; }
-        public int MapHeight { get; set; }
-        public Difficulty Difficulty { get; set; }
-        
-        private bool isRunning;
         
         private GameManager()
         {
-            MapWidth = 100;
-            MapHeight = 100;
-            Difficulty = Difficulty.Normal;
-            isRunning = true;
+            var externalLogger = new ExternalLogger();
+            _logger = new LoggerAdapter(externalLogger);
+            
+            _settings = new GameSettings();
+            _player = new Player(_logger);
+            _demoRunner = new DemoRunner(_logger, _settings);
+            _history = new Stack<ICommand>();
+
+            _inputHandler = new InputHandler();
+            _inputHandler.BindKey(ConsoleKey.W, new MoveCommand(_player, 0, -1));
+            _inputHandler.BindKey(ConsoleKey.A, new MoveCommand(_player, -1, 0));
+            _inputHandler.BindKey(ConsoleKey.S, new MoveCommand(_player, 0, 1));
+            _inputHandler.BindKey(ConsoleKey.D, new MoveCommand(_player, 1, 0));
+
+            MenuState = new MenuState(_logger, this);
+            GameState = new GameState(_logger, this, _player, _demoRunner);
+            PauseState = new PauseState(_logger, this);
+            GameOverState = new GameOverState(_logger, this);
+            
+            _currentState = MenuState;
+            _gameLoop = new GameLoop(_logger, this);
+        }
+        
+        public void ExecuteCommand(ICommand command)
+        {
+            command.Execute();
+            _history.Push(command);
+
+        }
+
+        public void Undo()
+        {
+            if (_history.Count > 0)
+            {
+                ICommand command = _history.Pop();
+                command.Undo();
+            }
+        }
+
+        public InputHandler GetInputHandler() => _inputHandler;
+
+        public void SetState(IGameState newState)
+        {
+            _currentState.Exit();
+            _currentState = newState;
+            _currentState.Enter();
+        }
+        
+        public void RestartGame()
+        {
+            _player = new Player(_logger);
+            SetState(MenuState);
         }
         
         public void Run()
         {
-            Console.WriteLine($"Game Started with difficulty: {Difficulty}");
-
-            EnemyFactory factory = new GoblinFactory();
-            Enemy enemy = factory.CreateEnemy();
-
-            Console.WriteLine("\n - Враг создан через фабрику - ");
-            enemy.Attack();
-
-            Console.WriteLine("\n - Работа Prototype - ");
-    
-            Enemy original = new Goblin();
-            Enemy clone = original.Clone();
-
-            Console.WriteLine($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
-
-            clone.Health = 500;
-            clone.Weapon.Name = "Топорик";
-
-            Console.WriteLine($"Клон после изменений: здоровье {clone.Health}, оружие {clone.Weapon.Name}");
-            Console.WriteLine($"Оригинал: здоровье {original.Health}, оружие {original.Weapon.Name}");
-            Console.WriteLine($"Сравнение оригинала и клона. Они разные: {!ReferenceEquals(original, clone)}");
-            
-            Console.WriteLine("\n Press ESC to quit");
-            
-            while (isRunning)
-            {
-                if (Console.KeyAvailable)
-                {
-                    var key = Console.ReadKey(true);
-                    if (key.Key == ConsoleKey.Escape)
-                    {
-                        isRunning = false;
-                    }
-                }
-            }
+            _gameLoop.Run();
         }
     }
 }

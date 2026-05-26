@@ -2,15 +2,13 @@ using System;
 
 namespace RpgRoguelikeCore.Weapons
 {
-    public class Sword : Weapon
+    public class Sword : BaseWeapon
     {
-        public Sword() : base("Меч", damage: 15)
-        {
-        }
+        private const int DEFAULT_DAMAGE = 15;
+        private const string DEFAULT_NAME = "Меч";
         
-        public override void Use()
+        public Sword() : base(DEFAULT_NAME, DEFAULT_DAMAGE)
         {
-            Console.WriteLine($"Вы делаете удар {Name} и наносите урон: {Damage}");
         }
     }
 }

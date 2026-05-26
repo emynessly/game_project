@@ -2,15 +2,13 @@ using System;
 
 namespace RpgRoguelikeCore.Weapons
 {
-    public class Staff : Weapon
+    public class Staff : BaseWeapon
     {
-        public Staff() : base("Посох", damage: 10)
+        private const int DEFAULT_DAMAGE = 10;
+        private const string DEFAULT_NAME = "Посох";
+
+        public Staff() : base(DEFAULT_NAME, DEFAULT_DAMAGE)
         {
-        }
-        
-        public override void Use()
-        {
-            Console.WriteLine($"Вы произносите заклинание {Name} и наносите урон: {Damage}");
         }
     }
 }
